@@ -38,21 +38,22 @@ cacheSolve <- function(x, ...) {
         ## retrieved cached matrices
         cInvMatrix <- x$getInvMatrix()
         cMatrix <- x$getMatrix()
-        print(cMatrix)
-        print(cInvMatrix)
+#         print(cMatrix)
+#         print(cInvMatrix)
         
         ## create an identity matrix with same size as given matrix
         idMatrix = diag(ncol(cMatrix))
-        print(idMatrix)
-        print(!is.null(cInvMatrix))
-        print(dim(cMatrix) == dim(cInvMatrix))
-        print(cMatrix %*% cInvMatrix)
-        print(all((cMatrix %*% cInvMatrix) == idMatrix))
+        
+#         print(idMatrix)
+#         print(!is.null(cInvMatrix))
+#         print(dim(cMatrix) == dim(cInvMatrix))
+#         print(cMatrix %*% cInvMatrix)
+#         print(all((cMatrix %*% cInvMatrix) == idMatrix))
 
         ## Check if cached matrix exist
         ## Check if cached Matrix has same size than matrix to solve
         ## check if dot product of given matrix and cached inverse matrix gives an identity matrix
-        if(!is.null(cInvMatrix) && dim(cMatrix) == dim(cInvMatrix) && all((cMatrix %*% cInvMatrix) == idMatrix)) {
+        if(!is.null(cInvMatrix) && dim(cMatrix) == dim(cInvMatrix) && all(round((cMatrix %*% cInvMatrix)) == idMatrix)) {
                 message("cached inverse matrix available")
                 return(cInvMatrix)
         } else{
